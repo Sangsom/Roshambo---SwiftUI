@@ -25,12 +25,11 @@ struct ContentView: View {
 
     // MARK: Properties
     var hands = ["Rock", "Paper", "Scissors"]
-    var maxRounds = 10
+    var maxRounds = 3
 
     var body: some View {
         VStack {
-            Text("You have to \(shouldWin ? "win" : "lose") this round")
-                .font(.title)
+            Text("I will go with \(hands[computerHand]). \(shouldWin ? "I shall win" : "Beat me!")")
 
             ForEach(hands, id: \.self) { hand in
                 Button(action: {
@@ -70,22 +69,22 @@ struct ContentView: View {
     func compareHands(player: String, computer: String) {
         if shouldWin {
             switch(computer, player) {
-            case ("Rock", "Paper"):
+            case ("Rock", "Scissors"):
                 incrementScore()
-            case ("Paper", "Scissors"):
+            case ("Paper", "Rock"):
                 incrementScore()
-            case ("Scissors", "Rock"):
+            case ("Scissors", "Paper"):
                 incrementScore()
             default:
                 decrementScore()
             }
         } else {
             switch(computer, player) {
-            case ("Rock", "Scissors"):
+            case ("Rock", "Paper"):
                 incrementScore()
-            case ("Paper", "Rock"):
+            case ("Paper", "Scissors"):
                 incrementScore()
-            case ("Scissors", "Paper"):
+            case ("Scissors", "Rock"):
                 incrementScore()
             default:
                 decrementScore()
@@ -103,6 +102,7 @@ struct ContentView: View {
 
     func restartGame() {
         round = 1
+        playerScore = 0
     }
 }
 
