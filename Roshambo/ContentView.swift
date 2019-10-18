@@ -10,12 +10,14 @@ import SwiftUI
 
 struct ContentView: View {
     // MARK: State Properties
+    @State private var hands = ["Rock", "Paper", "Scissors"]
     @State private var computerHand = Int.random(in: 0 ..< 3)
     @State private var shouldWin = false
     @State private var playerHand = ""
     @State private var playerScore = 0
     @State private var round = 1 {
         didSet {
+            hands.shuffle()
             computerHand = Int.random(in: 0 ..< 3)
             shouldWin = Bool.random()
         }
@@ -24,7 +26,6 @@ struct ContentView: View {
     @State private var showingAlert = false
 
     // MARK: Properties
-    var hands = ["Rock", "Paper", "Scissors"]
     var maxRounds = 3
 
     var body: some View {
