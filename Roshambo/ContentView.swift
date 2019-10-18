@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    // MARK: Properties
+    var hands = ["Rock", "Paper", "Scissors"]
+
     var body: some View {
         Text("Hello World")
     }
