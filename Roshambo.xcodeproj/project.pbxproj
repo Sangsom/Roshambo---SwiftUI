@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B1A2F242359ED2A00697EC2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1BDEA9E62359C133005BE8EC /* Roshambo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roshambo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BDEA9E92359C133005BE8EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BDEA9EB2359C133005BE8EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +41,7 @@
 		1BDEA9DD2359C133005BE8EC = {
 			isa = PBXGroup;
 			children = (
+				1B1A2F242359ED2A00697EC2 /* README.md */,
 				1BDEA9E82359C133005BE8EC /* Roshambo */,
 				1BDEA9E72359C133005BE8EC /* Products */,
 			);
