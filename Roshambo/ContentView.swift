@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var shouldWin = false
     @State private var playerHand = ""
     @State private var playerScore = 0
+    @State private var showingAlert = false
 
     // MARK: Properties
     var hands = ["Rock", "Paper", "Scissors"]
@@ -25,10 +26,17 @@ struct ContentView: View {
                     self.playerHand = hand
 
                     print("You chose \(hand), but computer chose \(self.hands[self.computerHand])")
+                    self.showingAlert = true
                 }) {
                     Text(hand)
                 }
             }
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(
+                title: Text("Result"),
+                message: Text("Hola"),
+                dismissButton: .default(Text("Ok")))
         }
     }
 
