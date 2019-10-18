@@ -29,42 +29,49 @@ struct ContentView: View {
     var maxRounds = 3
 
     var body: some View {
-        VStack {
-            Text("I will go with \(hands[computerHand]). \(shouldWin ? "I shall win" : "Beat me!")")
-                .font(.title)
-                .fontWeight(.medium)
+        ZStack {
+            LinearGradient(
+                gradient: Gradient(colors: [Color(hex: "EAD6EE"), Color(hex: "A0F1EA")]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing)
+            VStack {
+                Text("I will go with \(hands[computerHand]). \(shouldWin ? "I shall win" : "Beat me!")")
+                    .font(.title)
+                    .fontWeight(.medium)
 
-            ForEach(hands, id: \.self) { hand in
-                Button(action: {
-                    self.playerHand = hand
+                ForEach(hands, id: \.self) { hand in
+                    Button(action: {
+                        self.playerHand = hand
 
-                    // Determine if the player won or lost
-                    self.compareHands(
-                        player: self.playerHand,
-                        computer: self.hands[self.computerHand])
+                        // Determine if the player won or lost
+                        self.compareHands(
+                            player: self.playerHand,
+                            computer: self.hands[self.computerHand])
 
-                    // Update score
-                    if self.round < self.maxRounds {
-                        self.round += 1
-                    } else {
-                        self.endGame = true
+                        // Update score
+                        if self.round < self.maxRounds {
+                            self.round += 1
+                        } else {
+                            self.endGame = true
+                        }
+                    }) {
+                        Image(hand)
+                            .renderingMode(.original)
                     }
-                }) {
-                    Image(hand)
-                        .renderingMode(.original)
+
                 }
 
-            }
+                HStack {
+                    Text("Current Round: \(round)")
+                    Spacer()
+                    Text("Score: \(playerScore)")
+                }
+                .padding()
+                .font(.headline)
 
-            HStack {
-                Text("Current Round: \(round)")
-                Spacer()
-                Text("Score: \(playerScore)")
             }
-            .padding()
-            .font(.headline)
-
         }
+        .edgesIgnoringSafeArea(.all)
         .alert(isPresented: $endGame) {
             Alert(
                 title: Text("Game Over"),
@@ -118,5 +125,22 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+extension Color {
+    init(hex: String) {
+        let scanner = Scanner(string: hex)
+        scanner.scanLocation = 0
+        var rgbValue: UInt64 = 0
+        scanner.scanHexInt64(&rgbValue)
+
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+
+
+        self.init(red: Double(r) / 0xff, green: Double(g) / 0xff, blue: Double(b) / 0xff)
+
     }
 }
