@@ -14,12 +14,18 @@ struct ContentView: View {
     @State private var shouldWin = false
     @State private var playerHand = ""
     @State private var playerScore = 0
+    @State private var round = 1 {
+        didSet {
+            computerHand = Int.random(in: 0 ..< 3)
+            shouldWin = Bool.random()
+        }
+    }
+    @State private var endGame = false
     @State private var showingAlert = false
-    @State private var alertTitle = ""
-    @State private var alertMessage = ""
 
     // MARK: Properties
     var hands = ["Rock", "Paper", "Scissors"]
+    var maxRounds = 3
 
     var body: some View {
         VStack {
@@ -38,27 +44,27 @@ struct ContentView: View {
                         computer: self.hands[self.computerHand])
 
                     // Update score
-                    self.showingAlert = true
+                    if self.round < self.maxRounds {
+                        self.round += 1
+                    } else {
+                        self.endGame = true
+                    }
                 }) {
                     Text(hand)
                 }
+
             }
 
-            Text("Score: \(playerScore)")
+            Text("Current Round: \(round)")
         }
-        .alert(isPresented: $showingAlert) {
+        .alert(isPresented: $endGame) {
             Alert(
-                title: Text(alertTitle),
-                message: Text(alertMessage),
-                dismissButton: .default(Text("Continue"), action: {
-                    self.nextRound()
-                }))
+                title: Text("Game Over"),
+                message: Text("Congratulations mate, your score is \(self.playerScore)"),
+                dismissButton: .default(Text("Restart"), action: {
+                    self.restartGame()
+            }))
         }
-    }
-
-    func nextRound() {
-        computerHand = Int.random(in: 0 ..< 3)
-        shouldWin = Bool.random()
     }
 
     func compareHands(player: String, computer: String) {
@@ -89,14 +95,14 @@ struct ContentView: View {
 
     func incrementScore() {
         playerScore += 1
-        alertTitle = "You won"
-        alertMessage = "Woohoo! +1 to score."
     }
 
     func decrementScore() {
         playerScore -= 1
-        alertTitle = "You lost"
-        alertMessage = "Sorry mate -1 lost from score."
+    }
+
+    func restartGame() {
+        round = 1
     }
 }
 
