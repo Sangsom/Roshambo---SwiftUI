@@ -54,7 +54,13 @@ struct ContentView: View {
 
             }
 
-            Text("Current Round: \(round)")
+            HStack {
+                Text("Current Round: \(round)")
+                Spacer()
+                Text("Score: \(playerScore)")
+            }
+            .padding()
+
         }
         .alert(isPresented: $endGame) {
             Alert(
