@@ -21,6 +21,9 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
+            Text("You have to \(shouldWin ? "win" : "lose") this round")
+                .font(.title)
+
             ForEach(hands, id: \.self) { hand in
                 Button(action: {
                     self.playerHand = hand
@@ -36,7 +39,9 @@ struct ContentView: View {
             Alert(
                 title: Text("Result"),
                 message: Text("Hola"),
-                dismissButton: .default(Text("Ok")))
+                dismissButton: .default(Text("Ok"), action: {
+                    self.nextRound()
+                }))
         }
     }
 
