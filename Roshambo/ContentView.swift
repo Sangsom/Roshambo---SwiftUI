@@ -47,7 +47,8 @@ struct ContentView: View {
                         self.endGame = true
                     }
                 }) {
-                    Text(hand)
+                    Image(hand)
+                        .renderingMode(.original)
                 }
 
             }
