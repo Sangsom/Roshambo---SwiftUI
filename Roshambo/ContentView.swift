@@ -35,8 +35,6 @@ struct ContentView: View {
                 Button(action: {
                     self.playerHand = hand
 
-                    print("You chose \(hand), but computer chose \(self.hands[self.computerHand])")
-
                     // Determine if the player won or lost
                     self.compareHands(
                         player: self.playerHand,
