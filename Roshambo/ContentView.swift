@@ -30,6 +30,8 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("I will go with \(hands[computerHand]). \(shouldWin ? "I shall win" : "Beat me!")")
+                .font(.title)
+                .fontWeight(.medium)
 
             ForEach(hands, id: \.self) { hand in
                 Button(action: {
