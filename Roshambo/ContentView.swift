@@ -15,6 +15,8 @@ struct ContentView: View {
     @State private var playerHand = ""
     @State private var playerScore = 0
     @State private var showingAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
 
     // MARK: Properties
     var hands = ["Rock", "Paper", "Scissors"]
@@ -46,9 +48,9 @@ struct ContentView: View {
         }
         .alert(isPresented: $showingAlert) {
             Alert(
-                title: Text("You won"),
-                message: Text("Hola"),
-                dismissButton: .default(Text("Ok"), action: {
+                title: Text(alertTitle),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("Continue"), action: {
                     self.nextRound()
                 }))
         }
@@ -87,10 +89,14 @@ struct ContentView: View {
 
     func incrementScore() {
         playerScore += 1
+        alertTitle = "You won"
+        alertMessage = "Woohoo! +1 to score."
     }
 
     func decrementScore() {
         playerScore -= 1
+        alertTitle = "You lost"
+        alertMessage = "Sorry mate -1 lost from score."
     }
 }
 
