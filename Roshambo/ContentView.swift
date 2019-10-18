@@ -11,7 +11,9 @@ import SwiftUI
 struct ContentView: View {
     // MARK: State Properties
     @State private var computerHand = Int.random(in: 0 ..< 3)
-    @State private var playerHand = 0
+    @State private var shouldWin = false
+    @State private var playerHand = ""
+    @State private var playerScore = 0
 
     // MARK: Properties
     var hands = ["Rock", "Paper", "Scissors"]
@@ -20,7 +22,9 @@ struct ContentView: View {
         VStack {
             ForEach(hands, id: \.self) { hand in
                 Button(action: {
-                    print("Button was tapped \(hand)")
+                    self.playerHand = hand
+
+                    print("You chose \(hand), but computer chose \(self.hands[self.computerHand])")
                 }) {
                     Text(hand)
                 }
