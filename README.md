@@ -6,3 +6,5 @@ This game is created with SwiftUI as a #100DaysOfSwiftUI challenge project.
 - Each turn app prompts player to win or lose.
 - Player must tap correct hand in order to win or lose round.
 - Tracking rounds and score.
+
+![Roshambo - SwiftUI](https://media.giphy.com/media/fqavWcJqlcc8Vxu3LO/giphy.gif)
