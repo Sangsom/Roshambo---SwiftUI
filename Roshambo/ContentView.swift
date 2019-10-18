@@ -29,15 +29,24 @@ struct ContentView: View {
                     self.playerHand = hand
 
                     print("You chose \(hand), but computer chose \(self.hands[self.computerHand])")
+
+                    // Determine if the player won or lost
+                    self.compareHands(
+                        player: self.playerHand,
+                        computer: self.hands[self.computerHand])
+
+                    // Update score
                     self.showingAlert = true
                 }) {
                     Text(hand)
                 }
             }
+
+            Text("Score: \(playerScore)")
         }
         .alert(isPresented: $showingAlert) {
             Alert(
-                title: Text("Result"),
+                title: Text("You won"),
                 message: Text("Hola"),
                 dismissButton: .default(Text("Ok"), action: {
                     self.nextRound()
@@ -48,6 +57,40 @@ struct ContentView: View {
     func nextRound() {
         computerHand = Int.random(in: 0 ..< 3)
         shouldWin = Bool.random()
+    }
+
+    func compareHands(player: String, computer: String) {
+        if shouldWin {
+            switch(computer, player) {
+            case ("Rock", "Paper"):
+                incrementScore()
+            case ("Paper", "Scissors"):
+                incrementScore()
+            case ("Scissors", "Rock"):
+                incrementScore()
+            default:
+                decrementScore()
+            }
+        } else {
+            switch(computer, player) {
+            case ("Rock", "Scissors"):
+                incrementScore()
+            case ("Paper", "Rock"):
+                incrementScore()
+            case ("Scissors", "Paper"):
+                incrementScore()
+            default:
+                decrementScore()
+            }
+        }
+    }
+
+    func incrementScore() {
+        playerScore += 1
+    }
+
+    func decrementScore() {
+        playerScore -= 1
     }
 }
 
