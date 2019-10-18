@@ -31,6 +31,11 @@ struct ContentView: View {
             }
         }
     }
+
+    func nextRound() {
+        computerHand = Int.random(in: 0 ..< 3)
+        shouldWin = Bool.random()
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
