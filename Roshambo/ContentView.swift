@@ -25,7 +25,7 @@ struct ContentView: View {
 
     // MARK: Properties
     var hands = ["Rock", "Paper", "Scissors"]
-    var maxRounds = 3
+    var maxRounds = 10
 
     var body: some View {
         VStack {
