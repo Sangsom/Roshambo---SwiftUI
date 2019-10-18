@@ -62,6 +62,7 @@ struct ContentView: View {
                 Text("Score: \(playerScore)")
             }
             .padding()
+            .font(.headline)
 
         }
         .alert(isPresented: $endGame) {
