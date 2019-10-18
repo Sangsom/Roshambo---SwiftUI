@@ -26,7 +26,7 @@ struct ContentView: View {
     @State private var showingAlert = false
 
     // MARK: Properties
-    var maxRounds = 3
+    var maxRounds = 10
 
     var body: some View {
         ZStack {
