@@ -35,9 +35,10 @@ struct ContentView: View {
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing)
             VStack {
-                Text("I will go with \(hands[computerHand]). \(shouldWin ? "I shall win" : "Beat me!")")
+                Text("I will go with \(hands[computerHand]). \(shouldWin ? "I shall win!" : "Beat me!")")
                     .font(.title)
                     .fontWeight(.medium)
+                    .foregroundColor(.primary)
 
                 ForEach(hands, id: \.self) { hand in
                     Button(action: {
@@ -68,6 +69,7 @@ struct ContentView: View {
                 }
                 .padding()
                 .font(.headline)
+                .foregroundColor(.secondary)
 
             }
         }
